@@ -1,0 +1,42 @@
+int ledPin = 9;
+
+void setup() {
+  //DECLARE PIN TYPES
+  pinMode(13, OUTPUT);
+  pinMode(12, OUTPUT);
+
+}
+
+void loop() {
+  // FADE MIN TO MAX (0-255) BY 5 POINTS:
+  for (int fadeValue = 0 ; fadeValue <= 255; fadeValue += 3) {
+
+    analogWrite(ledPin, fadeValue);
+
+    // WAIT 20MS TO START NEXT STEP (BLINKING)
+    delay(20);
+  }
+
+  //SET PIN 13 TO HIGH AND WAIT 1 SECOND TO PROCEED
+  digitalWrite(13, HIGH);
+  delay(1000);
+
+  //SET PIN 12 TO HIGH AND IMMEDIATELY PROCEED TO NEXT STEP
+  digitalWrite(12, HIGH);
+
+  //FADE LED BACK OUT BY THE SAME VALUE AT THE SAME SPEED AS IT PREVIOUSLY TURNED ON
+  for (int fadeValue = 255 ; fadeValue >= 0; fadeValue -= 5) {
+    analogWrite(ledPin, fadeValue);
+
+    // WAIT 20MS TO START NEXT STEP
+    delay(20);
+  }
+  //SET PIN 12 TO LOW AND WAIT 100MS TO PROCEED
+  digitalWrite(12, LOW);
+  delay(100);
+
+  //SET PIN 13 TO LOW AND WAIT 100MS TO REPEAT THE ENTIRETY OF THE LOOP FUNCTION
+  digitalWrite(13, LOW);
+  delay(100);
+
+}
